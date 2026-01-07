@@ -1,5 +1,7 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 
+const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -11,8 +13,11 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:5000",
-        description: "Local server",
+        url: BASE_URL,
+        description:
+          process.env.NODE_ENV === "production"
+            ? "Production server"
+            : "Local server",
       },
     ],
     components: {
@@ -24,14 +29,9 @@ const options = {
         },
       },
     },
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
+    security: [{ bearerAuth: [] }],
   },
-
-  apis: ["./src/routes/*.js"], // 🔑 important
+  apis: ["./src/routes/*.js"],
 };
 
 module.exports = swaggerJsdoc(options);
