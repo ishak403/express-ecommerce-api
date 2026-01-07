@@ -140,6 +140,51 @@ npm run dev
 
 Server will run at: http://localhost:5000
 
+## 🚀 Production Deployment
+
+This project is deployed on **Render (Free Tier)** with a managed **PostgreSQL** database.
+
+### 🔗 Live URLs
+
+- **API Base URL**  
+  https://express-ecommerce-api-xedd.onrender.com
+
+- **Swagger Documentation**  
+  https://express-ecommerce-api-xedd.onrender.com/api-docs
+
+### 🗄 Database
+- PostgreSQL (Render managed service)
+- Sequelize ORM
+- Tables are automatically created on first startup using `sequelize.sync()`
+
+### 🔐 Environment Variables (Production)
+
+Configured securely via Render dashboard:
+
+- `PORT`
+- `DB_HOST`
+- `DB_PORT`
+- `DB_NAME`
+- `DB_USER`
+- `DB_PASSWORD`
+- `JWT_SECRET`
+- `JWT_EXPIRES_IN`
+- `NODE_ENV=production`
+
+### ⚙ Deployment Flow
+
+1. Code pushed to GitHub (`main` branch)
+2. Render auto-builds the Node.js application
+3. Environment variables injected at runtime
+4. Database connection validated
+5. Tables synchronized
+6. API becomes publicly accessible
+
+### 💤 Free Tier Notes
+- Service spins down after inactivity
+- First request may take ~30–50 seconds
+
+
 ## 📘 Swagger API Documentation
 
 Once the server is running, open: http://localhost:5000/api-docs
