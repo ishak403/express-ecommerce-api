@@ -12,11 +12,8 @@ const startServer = async () => {
     await sequelize.authenticate();
     logger.info("Database connection established");
 
-    // Sync models (safe in dev only)
-    if (NODE_ENV === "development") {
-      await sequelize.sync();
-      logger.info("Database synced");
-    }
+    await sequelize.sync();
+    logger.info("Database synced");
 
     const server = app.listen(PORT, () => {
       logger.info(`Server running on port ${PORT} (${NODE_ENV})`);
@@ -36,7 +33,6 @@ const startServer = async () => {
 
     process.on("SIGTERM", shutdown);
     process.on("SIGINT", shutdown);
-
   } catch (error) {
     logger.error("Failed to start server", error);
     process.exit(1);
