@@ -1,5 +1,14 @@
 # 🛒 Express E-Commerce REST API
 
+![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js)
+![Express.js](https://img.shields.io/badge/Express.js-Backend-lightgrey?logo=express)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?logo=postgresql)
+![Sequelize](https://img.shields.io/badge/Sequelize-ORM-blue?logo=sequelize)
+![JWT](https://img.shields.io/badge/JWT-Authentication-purple?logo=jsonwebtokens)
+![Swagger](https://img.shields.io/badge/Swagger-API%20Docs-green?logo=swagger)
+![Render](https://img.shields.io/badge/Deployed%20on-Render-black?logo=render)
+![Tests](https://img.shields.io/badge/Tests-Jest%20%2B%20Supertest-red?logo=jest)
+
 A production-style E-Commerce REST API built using Node.js, Express, PostgreSQL, and Sequelize.
 The project demonstrates real-world backend architecture including authentication, authorization, product management, cart handling, order processing, validation, logging, API documentation, and integration testing.
 
