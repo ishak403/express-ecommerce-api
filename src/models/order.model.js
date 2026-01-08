@@ -3,7 +3,7 @@ const sequelize = require("../config/database");
 
 module.exports = sequelize.define("Order", {
   status: {
-    type: DataTypes.ENUM("pending", "paid", "shipped"),
+    type: DataTypes.ENUM("pending", "paid", "shipped", "delivered", "cancelled"),
     defaultValue: "pending",
   },
   total: {
