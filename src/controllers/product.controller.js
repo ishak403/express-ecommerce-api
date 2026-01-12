@@ -9,39 +9,39 @@ const { Op } = require("sequelize");
 exports.searchProducts = async (req, res, next) => {
   try {
     let {
-      search,
-      category,
-      minPrice,
-      maxPrice,
+      search = "",
+      category = "",
+      minPrice = 0,
+      maxPrice = 0,
       page = 1,
       limit = 10,
     } = req.body;
 
-    // Sanitize pagination
+    // Pagination
     page = Math.max(parseInt(page, 10), 1);
     limit = Math.min(Math.max(parseInt(limit, 10), 1), 50);
     const offset = (page - 1) * limit;
 
     const where = {};
 
-    /* 🔍 Search by name or description */
-    if (search) {
+    /* 🔍 Search */
+    if (search && search.trim() !== "") {
       where[Op.or] = [
         { name: { [Op.iLike]: `%${search}%` } },
         { description: { [Op.iLike]: `%${search}%` } },
       ];
     }
 
-    /* 📂 Filter by category */
-    if (category) {
+    /* 📂 Category */
+    if (category && category.trim() !== "") {
       where.category = category;
     }
 
-    /* 💰 Filter by price range */
-    if (minPrice !== undefined || maxPrice !== undefined) {
+    /* 💰 Price */
+    if (Number(minPrice) > 0 || Number(maxPrice) > 0) {
       where.price = {};
-      if (minPrice !== undefined) where.price[Op.gte] = minPrice;
-      if (maxPrice !== undefined) where.price[Op.lte] = maxPrice;
+      if (Number(minPrice) > 0) where.price[Op.gte] = Number(minPrice);
+      if (Number(maxPrice) > 0) where.price[Op.lte] = Number(maxPrice);
     }
 
     const { rows, count } = await Product.findAndCountAll({
@@ -64,6 +64,7 @@ exports.searchProducts = async (req, res, next) => {
     next(error);
   }
 };
+
 
 /**
  * GET /api/products/:id
